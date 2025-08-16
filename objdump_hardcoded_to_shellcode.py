@@ -2270,18 +2270,6 @@ Disassembly of section .rsrc:
   404596:	62 6c 79 3e          	bound  ebp,QWORD PTR [ecx+edi*2+0x3e]
   40459a:	00 00                	add    BYTE PTR [eax],al
   40459c:	00 00                	add    BYTE PTR [eax],al
-	...
-
-Disassembly of section .reloc:
-
-00406000 <.reloc>:
-  406000:	00 30                	add    BYTE PTR [eax],dh
-  406002:	00 00                	add    BYTE PTR [eax],al
-  406004:	0c 00                	or     al,0x0
-  406006:	00 00                	add    BYTE PTR [eax],al
-  406008:	98                   	cwde   
-  406009:	30 00                	xor    BYTE PTR [eax],al
-	...
 """
 
 # Configuration
@@ -2371,4 +2359,5 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 
