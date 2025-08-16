@@ -5,6 +5,8 @@ from ctypes import windll, c_char_p, c_void_p, cast, CFUNCTYPE, byref, c_uint32
 
 # Hardcoded objdump output (Intel syntax)
 OBJDUMP_OUTPUT = """
+Disassembly of section .text:
+
 00402000 <.text>:
   402000:	77 30                	ja     0x402032
   402002:	00 00                	add    BYTE PTR [eax],al
@@ -2369,3 +2371,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
