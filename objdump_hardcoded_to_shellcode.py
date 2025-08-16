@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 import re
 import argparse
 from ctypes import windll, c_char_p, c_void_p, cast, CFUNCTYPE, byref, c_uint32
@@ -1810,3 +1809,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
